@@ -11,34 +11,60 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <!-- SonarQube Project Settings -->
     <sonar.projectKey>01-maven-web-app</sonar.projectKey>
     <sonar.host.url>http://localhost:9000</sonar.host.url>
+    
+    <!-- Java 17 compatibility -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <!-- JUnit 5 for modern testing support -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.9.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <finalName>maven-cloudaseem-app</finalName>
     <plugins>
+      <!-- Maven WAR Plugin for Building WAR Files -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.3.1</version>
       </plugin>
 
-      <!-- SonarQube Plugin for Code Quality -->
+      <!-- SonarQube Plugin for Code Quality Analysis -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
         <version>3.9.1.2184</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sonar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Maven Compiler Plugin to Specify Java Version -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>17</source>
+          <target>17</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
-</project>
 
+</project>
