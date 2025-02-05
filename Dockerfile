@@ -1,8 +1,9 @@
-# Use a specific version of Tomcat as base image
-FROM tomcat:8.0.20-jre8
 
-# Expose port 8080 to access the application
+# Use a stable version of Tomcat with Java 11+
+FROM tomcat:9.0-jdk11
+
+# Expose port 8080
 EXPOSE 8080
 
-# Copy the WAR file from the target directory of your Maven project to the Tomcat webapps directory
-COPY target/newapp.war /usr/local/tomcat/webapps/
+# Copy the WAR file dynamically
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
